@@ -1,0 +1,112 @@
+:root {
+    // Fontes
+    --fonte-primaria: 'Jost', sans-serif;
+    --fonte-secundaria: 'Share Tech Mono',
+        monospace;
+
+    //Tamanhos
+    --fonte-10px: 0.625rem;
+    --fonte-11px: 0.6875rem;
+    --fonte-12px: 0.75rem;
+    --fonte-13px: 0.8125rem;
+    --fonte-14px: 0.875rem;
+    --fonte-15px: 0.9375rem;
+    --fonte-16px: 1rem;
+    --fonte-17px: 1.0625rem;
+    --fonte-18px: 1.125rem;
+    --fonte-20px: 1.25rem;
+    --fonte-22px: 1.375rem;
+    --fonte-24px: 1.5rem;
+    --fonte-26px: 1.5625rem;
+    --fonte-28px: 1.75rem;
+    --fonte-30px: 1.875rem;
+    --fonte-32px: 2rem;
+    --fonte-34px: 2.125rem;
+    --fonte-36px: 2.25rem;
+    --fonte-38px: 2.375rem;
+    --fonte-40px: 2.5rem;
+    --fonte-42px: 2.625rem;
+    --fonte-44px: 2.75rem;
+    --fonte-46px: 2.875rem;
+    --fonte-48px: 3rem;
+    --fonte-50px: 3.125rem;
+    --fonte-144px: 9rem;
+
+    --fonte-extra-pequena: var(--fonte-12px);
+    --fonte-pequena: var(--fonte-14px);
+    --fonte-normal: var(--fonte-24px);
+    --fonte-media: var(--fonte-28px);
+    --fonte-media-grande: var(--fonte-32px);
+    --fonte-grande: var(--fonte-34px);
+    --fonte-extra-grande: 95px;
+}
+
+html {
+    font-size: 16px;
+}
+
+a {
+    transition: color 0.2s;
+    &:hover {
+        text-decoration: underline;
+        
+    }
+}
+
+body {
+    font-family: var(--fonte-primaria);
+    color: var(--cor-fonte);
+}
+
+::selection {
+    color: #fff;
+    background: #000000;
+}
+
+.titulo {
+    font-size: var(--fonte-media);
+    line-height: 1.5em;
+
+    &.maior {
+        font-size: var(--fonte-extra-grande);
+    }
+
+}
+
+.subtitulo {
+    font-family: var(--fonte-secundaria);
+    font-size: var(--fonte-grande);
+}
+
+p {
+    line-height: 1.5em;
+}
+
+span {
+    color: var(--cor-destaque);
+}
+
+.titulo+p {
+    margin-top: 20px;
+}
+
+.destacado {
+    strong {
+        position: relative;
+
+        &::before {
+            content: " ";
+            position: absolute;
+            width: 120%;
+            top: 35.5%;
+            left: -10%;
+            height: 57.5%;
+            z-index: -1;
+            background-color: var(--cor-destaque);
+        }
+    }
+}
+
+.cor-destaque {
+    color: var(--cor-destaque);
+}

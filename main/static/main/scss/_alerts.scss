@@ -1,0 +1,24 @@
+.alert{
+    position: fixed;
+    top: 15px;
+    display: flex;
+    left: 0;
+    justify-content: center;
+    background: transparent;
+    border: transparent;
+    width: 100vw;
+    animation-name: alert-popup;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    >ul{
+        background-color: #c85757;
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,.31);
+        padding: 20px 20px;
+        border: 2px solid #8e3434;
+        font-weight: 100;
+        color: #fff;
+        border-radius: 6px;
+        max-width: 500px;
+        line-height: 1.5em;
+    }
+}

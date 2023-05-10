@@ -1,0 +1,1 @@
+.circulo{position:absolute;width:650px;height:650px;background-color:var(--cor-secundaria);border-radius:50%;z-index:-2;box-shadow:12px 22px 0px #000}.circulo.cima-direita{top:-42%;right:-29%}.circulo.baixo-esquerda{bottom:-37%;left:-24%;z-index:3}

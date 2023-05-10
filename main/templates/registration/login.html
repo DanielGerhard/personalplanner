@@ -1,0 +1,39 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}{% endblock %}
+{% block title %}Login{% endblock %}
+{% block body_class %}no-flex{% endblock  %}
+{% block page_class %}page-form-with-card{% endblock %}
+{% block container %}container{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="page-card">
+      <div class="img-block d-md-block d-none">
+        <picture><img src="{% static 'main/images/login-img.jpg' %}" alt="">
+          <div class="credito">Image by <a
+              href="https://www.freepik.com/free-vector/hand-drawn-data-driven-illustration_28731613.htm#page=5&query=finance%20illustration&position=43&from_view=search&track=ais">Freepik</a>
+          </div>
+        </picture>
+      </div>
+      <div class="form-block">
+        <form method="post">
+          <div class="logo">{% include "main/svg/logo.svg" %}</div>
+
+          {% csrf_token %}{{ form|crispy }}
+          <p>Não tem uma conta?</p>
+          <a href="/sign-up">
+            <span>Crie uma aqui!</span>
+          </a>
+          <button type="submit" class="btn btn-success">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

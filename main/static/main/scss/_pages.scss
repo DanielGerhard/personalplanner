@@ -1,0 +1,43 @@
+#page {
+
+    &.sign-up {
+        .page-card {
+            padding: 0;
+
+            .form-block {
+                padding: 0;
+                background-color: var(--cor-primaria);
+
+                h2 {
+                    font-weight: 600;
+                    color: #fff;
+
+                }
+
+                h3 {
+                    color: #fff;
+                    margin-bottom: 30px;
+
+                }
+
+                form {
+                    display: block;
+                    box-shadow: 0;
+                    border-radius: 0;
+                    align-items: start;
+
+
+                    .asteriskField {
+                        display: inline-block;
+                        color: red;
+                    }
+
+                    .form-text {
+                        font-size: var(--fonte-extra-pequena);
+                    }
+
+                }
+            }
+        }
+    }
+}

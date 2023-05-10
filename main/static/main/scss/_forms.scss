@@ -1,0 +1,114 @@
+.page-form-with-card {
+    background-color: #0a9cfb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    height: 100svh;
+
+    .page-card {
+        display: grid;
+        overflow: hidden;
+        grid-template-columns: repeat(2, 1fr);
+        border-radius: 6px;
+        background-color: var(--cor-auxiliar);
+
+        @include media-breakpoint-down(md) {
+            grid-template-columns: repeat(1, 1fr);
+
+        }
+
+        .img-block {
+            picture {
+                display: block;
+                position: relative;
+                width: 100%;
+                height: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                .credito {
+                    position: absolute;
+                    bottom: 5px;
+                    right: 5px;
+                    z-index: 5;
+                    text-shadow: 1px 1px 1px black;
+                    color: #fff;
+                }
+            }
+        }
+
+        .form-block {
+            padding: 0;
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 50px;
+
+                svg {
+                    width: 100%;
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: 2px 2px 8px 1px #0000007d;
+                height: 100%;
+                border-radius: 0;
+                align-items: center;
+                padding: 60px 40px;
+                background-color: var(--cor-primaria);
+
+                #div_id_{
+                    &username, &password{
+                        width: 80%;
+                    }
+                }
+
+                .for-text {
+                    font-size: 11px;
+                }
+
+                label {
+                    color: #fff;
+                }
+
+                .asteriskField {
+                    display: none;
+                }
+
+                .alert {
+                    font-size: 12px;
+                }
+
+                a {
+                    color: var(--cor-destaque);
+
+                }
+
+                p {
+                    color: #fff;
+                }
+
+                .btn-success {
+                    margin-top: 10px;
+                    width: 70%;
+                    background-color: var(--cor-secundaria);
+                    border-color: var(--cor-secundaria);
+                    color: var(--cor-fonte);
+
+                    @include media-breakpoint-down(md){
+                    }
+                }
+            }
+        }
+    }
+}

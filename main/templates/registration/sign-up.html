@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Cadastro de usuário{% endblock %}
+{% block header %}{% endblock %}
+{% block body_class %}no-flex{% endblock  %}
+{% block page_class %}page-form-with-card sign-up{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="page-card">
+            <div class="img-block d-md-block d-none">
+                <picture><img src="{% static 'main/images/login-img.jpg' %}" alt="">
+                    <a class="credito" href="https://www.freepik.com/free-vector/flat-design-portrait-art-style-bright-colors_19332097.htm#query=illustrations&position=24&from_view=keyword&track=robertav1_2_sidr">Image by pikisuperstar</a> on Freepik
+                </picture>
+            </div>
+            <div class="form-block">
+                <form method="post">
+                    <h2 class="titulo">Crie uma conta<span class="destaque">.</span></h2>
+                    <h3 class="">E comece a simplificar sua vida hoje mesmo!</h3>
+                    {% csrf_token %}{{ form|crispy }}
+                    <p class="text-center">Tem uma conta?</p>
+                    <a  class="text-center" href="/login">
+                        <p>Entre aqui!</p>
+                    </a>
+                    <button type="submit" class="btn btn-success">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

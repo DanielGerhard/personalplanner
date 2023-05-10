@@ -1,0 +1,47 @@
+// bibliotecas
+@import 'bootstrap/bootstrap';
+
+//resets
+@import 'resets';
+
+// componentes 
+@import 'componentes/main';
+
+// projeto
+@import 'config';
+@import 'fontes';
+@import 'cores';
+@import 'animations';
+@import 'alerts';
+@import 'header';
+@import 'footer';
+@import 'forms';
+@import 'pages';
+
+
+body {
+    background-color: #afdfc4;
+
+    &:not(.no-flex) {
+        display: flex;
+    }
+}
+
+#page {
+    width: 100%;
+}
+
+.table {
+    tr {
+        $tr-border-color: #0000004c;
+        border-bottom: 1px solid $tr-border-color;
+
+        &:not(:first-child) {
+            border-top: 1px solid $tr-border-color;
+        }
+
+        &:nth-child(even) {
+            background-color: #ffffff32;
+        }
+    }
+}
