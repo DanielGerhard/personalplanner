@@ -18,20 +18,17 @@ dashboard
 
     <table class="table">
         <thead>
-            <tr>
-                {% for campo in campos %}
-                <th>{{ campo }}</th>
+            <tr> {% for label in receitas_labels %}
+                <th>{{ label }}</th>
                 {% endfor %}
             </tr>
         </thead>
         <tbody>
-            {% for receita in receitas %}
-            <tr>
-                <td>{{receita.id}}</td>
-                <td><a href="">{{receita.descricao}}</a></td>
-                <td>{{receita.valor}}</td>
-                <td>{{receita.pagador}}</td>
-                <td>{{receita.data}}</td>
+            {% for campo in campos_receita %}
+             {% with field_value=receita|get_field_value:campo %}
+                    <td>{{ field_value }}</td>
+                {% endwith %}
+        {% endfor %}
                 <td>
                     <form method="POST">
                         {% csrf_token %}

@@ -10,9 +10,11 @@ from movimentacoes.models import *
 def dashboard(request):
     if request.method == 'POST':
         if 'add-receita' in request.POST:
-            form = add_receita(request, 'main/dashboard.html')
+            form = add_receita(request)
+            return redirect('/dashboard')
         if 'deletar-receita' in request.POST:
             form = remover_receita(request)
+            return redirect('/dashboard')
     else:
         form = AddReceita()
         # campos = []
@@ -20,11 +22,15 @@ def dashboard(request):
         # campos = [Receita._meta.get_field(field).verbose_name for field in Receita._meta.fields]
     receitas = Receita.objects.all()
     requesto = request
+    campos_receita = ['id', 'descricao', 'valor', 'pagador', 'data']
     form = AddReceita()
+    receitas_labels = Receita.objects.first().get_verbose_names
 
     return render(request, 'main/dashboard.html', {'form': form,
                                                    'receitas': receitas,
-                                                   'requesto': requesto})
+                                                   'requesto': requesto,
+                                                   'receitas_labels': receitas_labels,
+                                                   'campos_receita': campos_receita})
 
 
 def sign_up(request):

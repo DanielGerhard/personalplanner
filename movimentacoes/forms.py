@@ -17,15 +17,30 @@ class AddReceita(forms.ModelForm):
             'pagador': 'Pagador'
         }
 
+class AddDespesa(forms.ModelForm):
+    data = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    valor = forms.DecimalField(decimal_places=2)
 
-# class AddRelacaoReceitasubcategoria(forms.ModelForm):
-#     class Meta:
-#         model = RelacaoReceitasubcategoria
-#         fields = ['descricao', 'id_subcategoria']
-#         labels = {
-#             'descricao': 'Descrição',
-#             'id_subcategoria': 'Subcategoria'
-#         }
+    class Meta:
+        model = Despesa
+        fields = ['descricao', 'id_categoria', 'valor', 'data', 'beneficiario']
+        labels = {
+            'descricao': 'Descrição',
+            'id_categoria': 'Categoria',
+            'valor': 'Valor',
+            'data': 'Data',
+            'beneficiario': 'Beneficiario'
+        }
+
+
+class AddRelacaoReceitasubcategoria(forms.ModelForm):
+    class Meta:
+        model = RelacaoReceitasubcategoria
+        fields = ['descricao', 'id_subcategoria']
+        labels = {
+            'descricao': 'Descrição',
+            'id_subcategoria': 'Subcategoria'
+        }
 
 
 # class AddSubcategoriaReceita(forms.ModelForm):
