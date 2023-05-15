@@ -45,16 +45,21 @@ class Receita(models.Model):
         null=True,
         verbose_name='Pagador'
     )
+
     criacao = models.DateTimeField(
         default=timezone.now,
         verbose_name='Data de Criação'
     )
 
-    def get_verbose_names(self):
+
+    def get_verbose_names(self, campos = None):
+        if isinstance(campos, str):
+            campos = [campos]
         verbose_names = []
         for field in self._meta.fields:
             if field.verbose_name:
-                verbose_names.append(field.verbose_name)
+                if not campos or field.name in campos:
+                    verbose_names.append(field.verbose_name)
         return verbose_names
 
 

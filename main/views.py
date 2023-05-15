@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+from .utils import *
 from movimentacoes.views import *
 from movimentacoes.models import *
 
@@ -20,11 +21,12 @@ def dashboard(request):
         # campos = []
         # cria uma lista com os nomes verboses dos campos
         # campos = [Receita._meta.get_field(field).verbose_name for field in Receita._meta.fields]
-    receitas = Receita.objects.all()
+    
     requesto = request
     campos_receita = ['id', 'descricao', 'valor', 'pagador', 'data']
+    receitas = Receita.objects.only(*campos_receita).values(*campos_receita)
     form = AddReceita()
-    receitas_labels = Receita.objects.first().get_verbose_names
+    receitas_labels = Receita.objects.first().get_verbose_names(campos_receita)
 
     return render(request, 'main/dashboard.html', {'form': form,
                                                    'receitas': receitas,
