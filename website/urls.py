@@ -18,7 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('admin/', admin.site.urls),
+    path('api/lista-de-compras/', include('listaDeCompras.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('', include('django.contrib.auth.urls')),
 ]
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

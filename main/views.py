@@ -18,15 +18,15 @@ def dashboard(request):
             return redirect('/dashboard')
     else:
         form = AddReceita()
-        # campos = []
+        campos = []
         # cria uma lista com os nomes verboses dos campos
         # campos = [Receita._meta.get_field(field).verbose_name for field in Receita._meta.fields]
     
     requesto = request
     campos_receita = ['id', 'descricao', 'valor', 'pagador', 'data']
+    receitas_labels = ['ID', 'descricao', 'Valor', 'Pagador', 'Data'] # Receita.objects.first().get_verbose_names(campos_receita)
     receitas = Receita.objects.only(*campos_receita).values(*campos_receita)
     form = AddReceita()
-    receitas_labels = Receita.objects.first().get_verbose_names(campos_receita)
 
     return render(request, 'main/dashboard.html', {'form': form,
                                                    'receitas': receitas,
@@ -34,6 +34,9 @@ def dashboard(request):
                                                    'receitas_labels': receitas_labels,
                                                    'campos_receita': campos_receita})
 
+@login_required(login_url="/login")
+def lista_de_compras(request):
+    return render(request, 'main/lista-de-compras.html')
 
 def sign_up(request):
     if request.method == 'POST':
