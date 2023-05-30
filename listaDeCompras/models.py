@@ -6,7 +6,9 @@ from djmoney.models.fields import MoneyField
 class ListaDeCompras(models.Model):
     descricao = models.CharField(
         max_length=255,
-        verbose_name='Descrição'
+        verbose_name='Descrição',
+        null=True,
+        blank=True,
     )
 
     comprado = models.BooleanField(default=False)
@@ -19,14 +21,16 @@ class ListaDeCompras(models.Model):
     #     verbose_name='Categoria'
     # )
 
-    valor = MoneyField(
+    valor = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         null=True,
-        default_currency='BRL'
+        blank=True,
     )
 
     criacao = models.DateTimeField(
         default=timezone.now,
-        verbose_name='Data de Criação'
+        verbose_name='Data de Criação',
+        null=True,
+        blank=True,
     )
