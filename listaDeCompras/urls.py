@@ -10,6 +10,7 @@ router.register(r'ListaDeCompras', views.ListaDeComprasViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    path('create_item$', views.create_item),
+    path('create_item/', views.create_item),
+    path('update_item/', views.update_item),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

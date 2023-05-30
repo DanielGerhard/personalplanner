@@ -1,3 +1,16 @@
+var timeout;
+function onChangeHandler(element) {
+  // Cancela o timeout anterior, se houver um
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+
+  // Define um novo timeout de 500 milissegundos
+  timeout = setTimeout(function () {
+    console.log(elemento);
+  }, 400);
+}
+
 function criarTabela(seletorTabela, dados) {
   let tabela = document.querySelector(seletorTabela);
   let tBody = tabela.querySelector("tbody");
@@ -5,16 +18,20 @@ function criarTabela(seletorTabela, dados) {
   dados.forEach((item) => {
     const novaLinha = document.createElement("tr");
     const descricaoCelula = document.createElement("td");
-    descricaoCelula.textContent = item.descricao;
+    const descricaoCelulaInput = document.createElement("input");
+    descricaoCelulaInput.type = "text";
+    descricaoCelulaInput.value = item.descricao;
+    descricaoCelula.appendChild(descricaoCelulaInput);
     novaLinha.appendChild(descricaoCelula);
 
     const valorCelula = document.createElement("td");
-    if (item.valor == null) {
-      valorCelula.textContent = ` `;
-    } else {
-      valorCelula.textContent = `R$ ${item.valor}`;
-    }
-      novaLinha.appendChild(valorCelula);
+    const valorCelulaInput = document.createElement("input");
+    valorCelulaInput.type = "number";
+
+    valorCelulaInput.value = item.valor;
+
+    valorCelula.appendChild(valorCelulaInput);
+    novaLinha.appendChild(valorCelula);
 
     // Adiciona a nova linha à tabela
     tBody.appendChild(novaLinha);
@@ -33,6 +50,40 @@ function get_item() {
 
 const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
 console.log(csrfToken);
+
+// Função para atualizar um item
+function updateItem(itemId, valorItem, campoItem) {
+  var itemData = {
+    id: itemId, // ID do item a ser atualizado
+    // Preencha aqui os campos que deseja atualizar
+    valor: valorItem,
+    campo: campoItem,
+  };
+
+  fetch("/api/lista-de-compras/ListaDeCompras/", {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": csrfToken,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(itemData),
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Erro ao atualizar o item.");
+      }
+    })
+    .then(function (data) {
+      updateTabela()
+      // Faça algo com os dados do item atualizado
+    })
+    .catch(function (error) {
+      console.error("Erro:", error);
+    });
+}
 
 function criar_item() {
   fetch("/api/lista-de-compras/ListaDeCompras/", {
@@ -71,3 +122,5 @@ function updateTabela() {
 }
 
 updateTabela();
+
+updateItem(22, 2, "valor");
