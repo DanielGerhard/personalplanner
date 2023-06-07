@@ -13,6 +13,15 @@ class ListaDeComprasViewSet(viewsets.ModelViewSet):
 
 
 @api_view(['POST'])
+def get_table(request):
+    if request.method == 'GET':
+        queryset = ListaDeCompras.objects.all().order_by('criacao')
+        serializer_class = ListaDeComprasSerializer
+        return serializer_class
+
+
+
+@api_view(['POST'])
 def create_item(request):
     print('dsauihodausnoimhdsuas')
     if request.method == 'POST':
@@ -23,7 +32,6 @@ def create_item(request):
 
     # if request.method == 'PUT':
     # if request.method == 'DELETE':
-
 
 @api_view(['PUT'])
 def update_item(request):
@@ -45,3 +53,12 @@ def update_item(request):
             item_serializer.save()
             return Response(item_serializer.data)
         return Response(item_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE]'])
+def create_item(request):
+    if request.method == 'DELETE':
+        item_data = JSONParser().parse(request)
+        item_serializer = ListaDeComprasSerializer(data=item_data)
+        if item_serializer.is_valid():
+            item_serializer.save()

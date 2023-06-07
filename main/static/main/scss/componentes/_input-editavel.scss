@@ -1,0 +1,13 @@
+.input-editavel {
+    background-color: #ffffff44;
+    width: 100%;
+    padding: 12px 8px;
+
+    &:hover {
+        background-color: #ffffff40;
+    }
+
+    &:focus {
+        background-color: #ffffff70;
+    }
+}

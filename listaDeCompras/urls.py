@@ -12,5 +12,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('create_item/', views.create_item),
     path('update_item/', views.update_item),
+    path('get_table/', views.get_table),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

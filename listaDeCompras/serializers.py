@@ -4,4 +4,4 @@ from .models import ListaDeCompras
 class ListaDeComprasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ListaDeCompras
-        fields = ('descricao', 'comprado', 'valor','criacao')
+        fields = ('id', 'descricao', 'comprado', 'valor','criacao')
