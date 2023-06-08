@@ -1,5 +1,7 @@
 import * as elements from "./elements.js";
-let csrfToken
+import * as eventHandler from "./event-handler.js";
+import * as utils from "./utils.js";
+let csrfToken;
 
 export function get_item() {
   const dataHoraAtual = new Date().toISOString().slice(0, 23).padEnd(26, "0");
@@ -16,7 +18,7 @@ export function deleteItem(itemId) {
     id: itemId,
   };
 
-  fetch("/api/lista-de-compras/ListaDeCompras/" + itemId + '/', {
+  fetch("/api/lista-de-compras/ListaDeCompras/" + itemId + "/", {
     method: "DELETE",
     headers: {
       "X-CSRFToken": csrfToken,
@@ -40,15 +42,19 @@ export function deleteItem(itemId) {
 }
 
 // Função para atualizar um item
-export function updateItem(itemId, valorItem, campoItem) {
+export function updateItem({
+  itemId = null,
+  valorItem = null,
+  campoItem = null,
+}) {
   var itemData = {
-    id: itemId, 
-    valor: valorItem,
-    campo: campoItem,
+    id: itemId,
+    [campoItem]: valorItem,
   };
+  console.log(itemData);
 
-  fetch("/api/lista-de-compras/ListaDeCompras/", {
-    method: "POST",
+  fetch("/api/lista-de-compras/ListaDeCompras/" + itemId + "/", {
+    method: "PATCH",
     headers: {
       "X-CSRFToken": csrfToken,
       Accept: "application/json",
@@ -64,8 +70,8 @@ export function updateItem(itemId, valorItem, campoItem) {
       }
     })
     .then(function (data) {
-      updateTabela();
-      // Faça algo com os dados do item atualizado
+      utils.debounceFunction(updateTabela(), 2000);
+
     })
     .catch(function (error) {
       console.error("Erro:", error);
@@ -108,9 +114,7 @@ export function updateTabela() {
     });
 }
 
-// updateItem(22, 4, "valor");
-
-export function init(){
+export function init() {
   csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
-  updateTabela()
+  updateTabela();
 }

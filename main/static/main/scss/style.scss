@@ -20,7 +20,7 @@
 
 
 body {
-    background-color: #afdfc4;
+    background-color: #adadad;
 
     &:not(.no-flex) {
         display: flex;
@@ -31,8 +31,98 @@ body {
     width: 100%;
 }
 
+td {
+    width: 100%;
+    position: relative;
+}
+
+.label-input-editavel {
+    position: absolute;
+    top: calc(50% - 0.5em);
+    left: 16px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    line-height: 0.6;
+
+    strong {
+        font-weight: 600;
+    }
+
+    span {
+        color: var(--cor-fonte);
+    }
+
+    .lable {
+        opacity: 0.9;
+    }
+
+    .top-right-data {
+        strong {
+            display: flex;
+            @include media-breakpoint-down(md) {
+                font-size: var(--fonte-22px);
+            }
+        }
+    }
+
+
+}
+.valor-celula{
+    width: 200px;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    button{
+        padding: 2px 8px;
+    }
+}
+
+.logout {
+    background-color: #fff;
+    padding: 8px 6px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.botao-mais {
+    &.sair {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1;
+        font-weight: 500;
+        font-size: 18px;
+        right: unset;
+        left: 15px;
+        border: none;
+    }
+}
+
+.top-right-data {
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 13px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+
+
+    @include media-breakpoint-down(md) {
+        font-size: var(--fonte-13px);
+    }
+}
+
 .table {
+
     tr {
+        display: flex;
+        justify-content: space-between;
         $tr-border-color: #0000004c;
         border-bottom: 1px solid $tr-border-color;
 
@@ -40,8 +130,8 @@ body {
             border-top: 1px solid $tr-border-color;
         }
 
-        &:nth-child(even) {
-            background-color: #ffffff32;
-        }
+        // &:nth-child(even) {
+        //     background-color: #ffffff32;
+        // }
     }
 }

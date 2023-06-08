@@ -2,44 +2,36 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'main/css/fontawesome.min.css' %}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}My Site{% endblock title %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-XXXX"
-      crossorigin="anonymous"
-    />
-  </head>
 
-  <body class="{% block body_class %}{% endblock %}">
-    {% csrf_token %}
-    {% block header %}
-    <!--Main Navigation-->
-    <!-- Sidebar -->
-    <header
-      class="dashboard d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
-      style="width: 280px"
-    >
-      <a
-        href="/dashboard"
-        class="logo d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-      >
-        {% include 'main/svg/logo-no-slogan.svg' %}
-      </a>
-      <hr />
-      <ul class="nav nav-pills flex-column mb-auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/fontawesome.min.css' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}My Site{% endblock title %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="no-flex{% block body_class %}{% endblock %}">
+  {% csrf_token %}
+  {% block header %}
+  <!--Main Navigation-->
+  <!-- Sidebar -->
+  {% comment %} <header class="dashboard d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+    <a href="/dashboard" class="logo d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      {% include 'main/svg/logo-no-slogan.svg' %}
+    </a>
+    <hr />
+    <nav>
+
+      <ul class="nav nav-pills flex-column mb-auto"> {% endcomment %}
+
+
         {% comment %}
         <li class="nav-item">
           <a href="/dashboard" class="nav-link active" aria-current="page">
@@ -51,13 +43,13 @@
         </li>
         <li>
           {% endcomment %}
-          <a href="/lista-de-compras" class="nav-link text-white">
+          {% comment %} <a href="/lista-de-compras" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>
             Lista de Compras
           </a>
-        </li>
+        </li> {% endcomment %}
         {% comment %}
         <li>
           <a href="#" class="nav-link text-white">
@@ -78,71 +70,46 @@
       </ul>
       <hr />
       {% endcomment %}
-      <div class="dropdown">
-        <a
-          href="#"
-          class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-          id="dropdownUser1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="https://github.com/mdo.png"
-            alt=""
-            width="32"
-            height="32"
-            class="rounded-circle me-2"
-          />
+      {% comment %} <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
           <strong>mdo</strong>
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-dark text-small shadow"
-          aria-labelledby="dropdownUser1"
-        >
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-      </div>
-    </header>
-    <!--Main Navigation-->
-    {% endblock %}
+        </a> {% endcomment %}
+        <a class="botao-mais sair" href="#logout" data-fancybox class='logout'>Sair</a>
+        <div id="logout" style="display:none; text-align: center;">
+          <p>Você tem certeza?</p>
+          <a  class="btn btn-warning" href="logout">sim</a>
+        </div>
+    </nav>
+    {% comment %}
+  </header> {% endcomment %}
+  <!--Main Navigation-->
+  {% endblock %}
 
-    <main id="page" class="{% block page_class %}{% endblock %}">
-      <div class="{% block container %}container-fluid{% endblock %}">
-        {% block content %} {% endblock content %}
-      </div>
-    </main>
-    
-    {% block templates %}{% endblock %}
+  <main id="page" class="{% block page_class %}{% endblock %}">
+    <div class="{% block container %}container-fluid{% endblock %}">
+      {% block content %} {% endblock content %}
+    </div>
+  </main>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
-    />
-    <script type="module" src="{% static 'js/app.js' %}"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  {% block templates %}{% endblock %}
 
-  {% block add_item %}{% endblock add_item %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+  <script type="module" src="{% static 'js/main.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+{% block add_item %}{% endblock add_item %}
+
 </html>
