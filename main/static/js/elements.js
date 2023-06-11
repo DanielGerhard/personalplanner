@@ -32,21 +32,10 @@ export function getInput({
 
 export function criarTabela(seletorTabela, dados) {
   let currentFocus = document.activeElement;
-  
+
   let tabela = document.querySelector(seletorTabela);
   let tBody = tabela.querySelector("tbody");
-  let topRightData = document.querySelector(['[top-right-data]'])
-  
   tBody.innerHTML = "";
-  // Atualiza
-  let somaValores = 0;
-  dados.forEach((item) => {
-    const valor = parseFloat(item.valor);
-    if (!isNaN(valor)) {
-      somaValores += valor
-    }
-  });
-  topRightData.innerHTML = somaValores.toFixed(2);
 
   dados.forEach((item) => {
     const novaLinha = document.createElement("tr");
@@ -65,7 +54,7 @@ export function criarTabela(seletorTabela, dados) {
 
     // Valor Célula
     const valorCelula = document.createElement("td");
-    valorCelula.classList.add('valor-celula');
+    valorCelula.classList.add("valor-celula");
     const labelValor = document.createElement("label");
     labelValor.textContent = "R$";
     labelValor.classList.add("label-input-editavel");
@@ -90,7 +79,7 @@ export function criarTabela(seletorTabela, dados) {
     tBody.appendChild(novaLinha);
   });
   console.log(currentFocus);
-  currentFocus.focus({ focusVisible: true })
+  currentFocus.focus({ focusVisible: true });
 
   eventHandler.updateEvents();
 }

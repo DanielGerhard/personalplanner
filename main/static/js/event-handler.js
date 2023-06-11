@@ -70,9 +70,4 @@ export function init() {
       api.criar_item();
     });
   }
-
-  utils.debounce(function () {
-    console.log("1");
-    console.log("2");
-  }, 1000);
 }

@@ -11,6 +11,7 @@ export function get_item() {
     valor: "0",
     criacao: dataHoraAtual,
   };
+  updateTRD()
 }
 
 export function deleteItem(itemId) {
@@ -27,17 +28,9 @@ export function deleteItem(itemId) {
     },
     body: JSON.stringify(itemData),
   })
-    .then(function (response) {
-      if (response.ok) {
-      } else {
-        throw new Error("Erro ao Deletar o item.");
-      }
-    })
-    .then(function (data) {
+    .then(function () {
       updateTabela();
-    })
-    .catch(function (error) {
-      console.error("Erro:", error);
+      updateTRD()
     });
 }
 
@@ -51,7 +44,6 @@ export function updateItem({
     id: itemId,
     [campoItem]: valorItem,
   };
-  console.log(itemData);
 
   fetch("/api/lista-de-compras/ListaDeCompras/" + itemId + "/", {
     method: "PATCH",
@@ -69,9 +61,8 @@ export function updateItem({
         throw new Error("Erro ao atualizar o item.");
       }
     })
-    .then(function (data) {
-      utils.debounceFunction(updateTabela(), 2000);
-
+    .then(function () {
+      updateTRD();
     })
     .catch(function (error) {
       console.error("Erro:", error);
@@ -90,8 +81,8 @@ export function criar_item() {
   })
     .then((response) => {
       if (response.status === 201) {
-        console.log("Item criado com sucesso!");
         updateTabela();
+        updateTRD()
       } else {
         console.error("Erro ao criar o item:", response.status);
       }
@@ -107,6 +98,7 @@ export function updateTabela() {
     .then((data) => {
       // Manipule os dados recebidos da API aqui
       elements.criarTabela("[js-tabela]", data);
+      updateTRD()
     })
     .catch((error) => {
       // Trate erros de requisição aqui
@@ -114,7 +106,24 @@ export function updateTabela() {
     });
 }
 
+export function updateTRD() {
+  fetch("/api/lista-de-compras/ListaDeCompras/?format=json")
+    .then((response) => response.json())
+    .then((data) => {
+      let topRightData = document.querySelector(["[top-right-data]"]);
+      let somaValores = 0;
+      data.forEach((item) => {
+        const valor = parseFloat(item.valor);
+        if (!isNaN(valor)) {
+          somaValores += valor;
+        }
+      });
+      topRightData.innerHTML = somaValores.toFixed(2);
+    });
+}
+
 export function init() {
   csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
   updateTabela();
+  updateTRD();
 }
