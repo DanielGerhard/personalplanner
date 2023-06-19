@@ -8,13 +8,11 @@ class AddReceita(forms.ModelForm):
 
     class Meta:
         model = Receita
-        fields = ['descricao', 'id_categoria', 'valor', 'data', 'pagador']
+        fields = ['descricao', 'valor', 'data']
         labels = {
             'descricao': 'Descrição',
-            'id_categoria': 'Categoria',
             'valor': 'Valor',
             'data': 'Data',
-            'pagador': 'Pagador'
         }
 
 class AddDespesa(forms.ModelForm):
@@ -26,12 +24,9 @@ class AddDespesa(forms.ModelForm):
         fields = ['descricao', 'id_categoria', 'valor', 'data', 'beneficiario']
         labels = {
             'descricao': 'Descrição',
-            'id_categoria': 'Categoria',
             'valor': 'Valor',
             'data': 'Data',
-            'beneficiario': 'Beneficiario'
         }
-
 
 class AddRelacaoReceitasubcategoria(forms.ModelForm):
     class Meta:
@@ -41,7 +36,6 @@ class AddRelacaoReceitasubcategoria(forms.ModelForm):
             'descricao': 'Descrição',
             'id_subcategoria': 'Subcategoria'
         }
-
 
 # class AddSubcategoriaReceita(forms.ModelForm):
 #     class Meta:

@@ -27,11 +27,11 @@ class Receita(models.Model):
         verbose_name='Categoria'
     )
 
-    valor = MoneyField(
+    valor = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         null=True,
-        default_currency='BRL'
+        blank=True,
     )
 
     data = models.DateTimeField(
@@ -51,8 +51,7 @@ class Receita(models.Model):
         verbose_name='Data de Criação'
     )
 
-
-    def get_verbose_names(self, campos = None):
+    def get_verbose_names(self, campos=None):
         if isinstance(campos, str):
             campos = [campos]
         verbose_names = []
@@ -84,11 +83,16 @@ class SubcategoriaDespesas(models.Model):
 class Despesa(models.Model):
     descricao = models.CharField(max_length=255)
     id_categoria = models.ForeignKey(
-        CategoriaDespesas, on_delete=models.SET_NULL, blank=True, null=True)
+        CategoriaDespesas,
+        on_delete=models.SET_NULL,
+        blank=True, null=True
+    )
     criacao = models.DateTimeField(auto_now_add=True)
     data = models.DateTimeField(blank=True, null=True)
     beneficiario = models.ForeignKey(
-        Contato, on_delete=models.SET_NULL, blank=True, null=True)
+        Contato, on_delete=models.SET_NULL,
+        blank=True,
+        null=True)
     criacao = models.DateTimeField(default=timezone.now)
 
 

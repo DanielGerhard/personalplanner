@@ -1,72 +1,82 @@
 {% extends "main/base.html" %}
-{% block container %}container{% endblock %}
-
-{% block title %}
-Rancho
-{% endblock %}
-
-{% block content %}
-
-{% block add_post %}
-
-
-{% endblock %}
+{% load static %}
+{% block container %}container{% endblock %} 
+{%block title %} Rancho {% endblock %} {% block content %} {% block add_post %} {% endblock %}
 
 <div class="feed-wrapper">
-    <div class="table-header">
-        <h1 class="titulo"><strong>Rancho do Casal</strong></h1>
-        <div class="top-right-data"><span class="lable">Valor estimado:</span>
-            <br><br>
-            <strong>R$
-                <span class="data" top-right-data></span>
-            </strong>
-        </div>
+  <div class="table-header">
+    <h1 class="titulo"><strong>Rancho do Casal</strong></h1>
+    <div class="top-right-data">
+      <span class="lable">Valor estimado:</span> <br /><br />
+      <strong
+        >R$
+        <span class="data" top-right-data></span>
+      </strong>
     </div>
-    <hr>
+  </div>
+  <hr />
 
-    <table class="table" js-tabela>
-        <thead>
-            <tr>
-                <td>Item</td>
-                <td class="valor-celula">Valor</td>
-                <td class="delete-button"></td>
-            </tr>
-        </thead>
-        <tbody id="lista-de-compras" renderElementInside='#item-lista-de-compra'>
-        </tbody>
-    </table>
+  <table class="table" js-tabela>
+    <thead>
+      <tr>
+        <td>Item</td>
+        <td class="valor-celula">Valor</td>
+        <td class="delete-button"></td>
+      </tr>
+    </thead>
+    <tbody
+      id="lista-de-compras"
+      renderElementInside="#item-lista-de-compra"
+    ></tbody>
+  </table>
 
-    <!-- LISTAGEM DE POSTS -->
+  <!-- LISTAGEM DE POSTS -->
 </div>
 
-{% endblock %}
-
-{% block add_item %}
+{% endblock %} {% block add_item %}
 <button class="botao-mais" button-mais>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-        <path
-            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-    </svg></button>
-{% endblock add_item %}
-
-{% block templates %}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+    <path
+      d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+    />
+  </svg>
+</button>
+{% endblock add_item %} {% block templates %}
 <template id="item-lista-de-compra" input-editavel-number>
-    <td><input type="number" class="input-editavel"></td>
+  <td><input type="number" class="input-editavel" /></td>
 </template>
 <template input-editavel-text>
-    <td><input type="text" class="input-editavel"></td>
+  <td><input type="text" class="input-editavel" /></td>
 </template>
 
 <template id="delete-button" default-delete-button>
-    {% csrf_token %}
-    <input type="hidden" name="deletar-receita" value="delete">
-    <button type="submit" class="btn btn-danger" name="id-receita" value="{{receita.id}}" default-delete-button-ce>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
-            viewBox="0 0 16 16">
-            <path
-                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-        </svg>
-    </button>
+  {% csrf_token %}
+  <input type="hidden" name="deletar-receita" value="delete" />
+  <button
+    type="submit"
+    class="btn btn-danger"
+    name="id-receita"
+    value="{{receita.id}}"
+    default-delete-button-ce
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-trash3-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
+      />
+    </svg>
+  </button>
 </template>
+{% endblock %}
+
+
+{% block page_script %}
+<script type="module" src="{% static 'js/main.js' %}"></script>
 {% endblock %}

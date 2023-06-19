@@ -1,4 +1,5 @@
 {% extends "main/base.html" %}
+{% load static %}
 {% block container %}container{% endblock %}
 
 {% block title %}
@@ -48,7 +49,6 @@ dashboard
 
 
 {% block add_item %}
-<!-- ADICIONAR Receita -->
 <a class="botao-mais" href="#modal-add-receita" data-fancybox>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
       <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -71,5 +71,8 @@ dashboard
       </button>
     </form>
   </div>
-  <!-- ADICIONAR Receita -->
 {% endblock add_item %}
+
+<script src="{% static 'js/movimentacoes/receitas.js' %}"></script>
+
+{% block page_script %}{% endblock  %}

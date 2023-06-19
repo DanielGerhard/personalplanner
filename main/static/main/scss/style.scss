@@ -1,5 +1,6 @@
 // bibliotecas
 @import 'bootstrap/bootstrap';
+@import 'fancybox';
 
 //resets
 @import 'resets';
@@ -31,10 +32,10 @@ body {
     width: 100%;
 }
 
-td {
-    width: 100%;
-    position: relative;
-}
+// td {
+//     width: 100%;
+//     position: relative;
+// }
 
 .label-input-editavel {
     position: absolute;
@@ -118,20 +119,20 @@ td {
     }
 }
 
-.table {
+// .table {
 
-    tr {
-        display: flex;
-        justify-content: space-between;
-        $tr-border-color: #0000004c;
-        border-bottom: 1px solid $tr-border-color;
+//     tr {
+//         display: flex;
+//         justify-content: space-between;
+//         $tr-border-color: #0000004c;
+//         border-bottom: 1px solid $tr-border-color;
 
-        &:not(:first-child) {
-            border-top: 1px solid $tr-border-color;
-        }
+//         &:not(:first-child) {
+//             border-top: 1px solid $tr-border-color;
+//         }
 
-        // &:nth-child(even) {
-        //     background-color: #ffffff32;
-        // }
-    }
-}
+//         // &:nth-child(even) {
+//         //     background-color: #ffffff32;
+//         // }
+//     }
+// }
